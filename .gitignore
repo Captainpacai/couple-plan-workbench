@@ -1,0 +1,50 @@
+# ============================================================
+# 开源仓库的排除规则
+# 原则：宁可少提交，不可误传私密数据
+# ============================================================
+
+# ---- 私密与版权素材 ----
+.workbuddy/
+ref/
+standalone/
+*.jpg
+*.jpeg
+*.png
+.wbapp_*.genie
+
+# ---- 真实业务数据备份 ----
+# backup_* 内含照片 base64、聊天记录、心情记录与房间码
+build2/backup_*/
+build2/v*_backup/
+build2/v*_verify/
+
+# ---- 平台运行时逆向取证产物 ----
+build2/probe/
+build2/probe_*.py
+
+# ---- 构建 / 调试的一次性输出 ----
+build2/*.txt
+build2/*.json
+!build2/schema_*.json
+!build2/mood_schema.json
+build2/.pubtmp/
+build2/bundle_check.js
+build2/check.js
+build2/mc_*.js
+build2/sdkprobe.js
+build2/analyze_remote.py
+build2/gen_moods.py
+build2/gen_seed.py
+build2/patch_remote.py
+build2/patch_remote2.py
+build2/publish_v13.py
+build2/deploy_page.py
+build2/upload_cos.py
+build2/run_skill.py
+build2/verify_standalone.js
+build2/github_api_push.py
+
+# ---- 依赖与系统文件 ----
+node_modules/
+.DS_Store
+Thumbs.db

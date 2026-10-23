@@ -1,0 +1,360 @@
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l2 2 3-3"/><path d="M12 8h8"/><path d="M4 17l2 2 3-3"/><path d="M12 18h8"/></svg></span>
+      <b>计划台</b>
+    </div>
+    <nav>
+      <button data-tab="plan" class="on"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l2 2 3-3"/><path d="M12 8h8"/><path d="M4 17l2 2 3-3"/><path d="M12 18h8"/></svg>我的计划</button>
+      <button data-tab="partner"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><path d="M16.5 6.2a3.2 3.2 0 0 1 0 6"/><path d="M18 19h3a5.2 5.2 0 0 0-4-5.1"/></svg>伙伴<span class="badge hide" id="sbBadgePartner">0</span></button>
+      <button data-tab="photo"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.4"/></svg>照片</button>
+      <button data-tab="mine"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>我的</button>
+    </nav>
+    <div class="foot" id="sideFoot">—</div>
+  </aside>
+
+  <main class="main">
+    <div id="netBanner" class="banner hide">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span class="sp" id="bannerText"></span>
+      <button id="btnRetry">重试</button>
+    </div>
+
+    <section class="panel on" id="panel-plan">
+      <div class="topbar">
+        <h1>我的计划</h1>
+        <span class="acts">
+          <button class="iconbtn" id="btnRefreshTop" aria-label="重新同步"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg></button>
+          <button class="iconbtn" id="btnNewTop" aria-label="新建计划"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button>
+          <button class="iconbtn" id="btnGoMine" aria-label="设置"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg></button>
+        </span>
+      </div>
+
+      <div class="meRow">
+        <span class="meChip" id="meChip">我 · —</span>
+        <span class="meCount" data-sp-bindable="database" data-sp-database-id="EQzLfYTRyNHYYTKfDr5IKg" id="meCount">—</span>
+      </div>
+
+      <div class="filters" id="quadFilter"></div>
+
+      <div class="card todayCard" id="todayCard">
+        <div class="card-h">
+          <span class="bar"></span>
+          <h2>今天要处理</h2>
+          <span class="todayCount" data-sp-bindable="database" data-sp-database-id="EQzLfYTRyNHYYTKfDr5IKg" id="todayCount">0</span>
+        </div>
+        <div id="todayList"></div>
+      </div>
+
+      <div class="moodBar" id="moodQuick" role="button" tabindex="0" aria-label="记今天的心情">
+        <span class="mface" id="mqFace"></span>
+        <span class="mtxt"><b>今天心情</b><i id="moodQuickSub">点一下记录</i></span>
+        <span class="mgo" id="mqGo">记录</span>
+      </div>
+
+      <div id="planList" data-sp-bindable="database" data-sp-database-id="EQzLfYTRyNHYYTKfDr5IKg"></div>
+      <button class="newRow" id="btnNewBottom">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+        新建计划
+      </button>
+      <button class="archRow" id="btnArchiveOpen">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v4H3z"/><path d="M5 11v9h14v-9"/><path d="M10 15h4"/></svg>
+        <span>已完成归档</span><i id="archCount">0</i>
+      </button>
+    </section>
+
+    <section class="panel" id="panel-partner">
+      <div class="topbar"><h1>伙伴</h1><span class="acts"><button class="iconbtn" id="btnRefreshP" aria-label="重新同步"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg></button></span></div>
+      <div class="presence"><span class="dot" id="pDot"></span><span id="presenceLine" data-sp-bindable="database" data-sp-database-id="4ZKcg7SjtcNyWfqYEs9r1z">—</span></div>
+      <div class="card">
+        <div class="card-h"><span class="bar"></span><h2 id="pPlansTitle">对方的计划</h2><span class="sub" data-sp-bindable="database" data-sp-database-id="EQzLfYTRyNHYYTKfDr5IKg" id="pCount">—</span></div>
+        <div id="partnerPlans"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><span class="bar"></span><h2>留言板</h2><span class="sub">两人共用</span></div>
+        <div class="cheerRow" id="cheerRow"></div>
+        <div id="chatList" data-sp-bindable="database" data-sp-database-id="EQzLfYTRyNHYYTKfDr5IKg"></div>
+        <div class="sendRow">
+          <textarea id="chatInput" placeholder="留一句话…" rows="1"></textarea>
+          <button class="sendBtn" id="btnSendChat" aria-label="发送"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l16-8-6 16-3.5-6.5L4 12z"/></svg></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-photo">
+      <div class="topbar"><h1>照片记录</h1><span class="acts"><button class="iconbtn" id="btnRefreshPhoto" aria-label="重新同步"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg></button></span></div>
+      <div class="cols">
+        <div>
+          <div class="card">
+            <div class="dayNav">
+              <button class="iconbtn" id="btnPhotoPrev" aria-label="前一天"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+              <div class="dayMid"><span class="d1" id="photoDateText">—</span><span class="d2" id="photoDateSub">—</span></div>
+              <button class="iconbtn" id="btnPhotoNext" aria-label="后一天"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+              <button class="btn sm" id="btnPhotoToday">今天</button>
+            </div>
+            <div class="moodSeg" id="moodSeg">
+              <button data-view="month">月</button><button data-view="week">周</button>
+            </div>
+            <div class="cal" id="moodCal" data-sp-bindable="database" data-sp-database-id="lG9I5mBB0NPhqVZDXHsAYy"></div>
+            <div class="mlegend" id="moodLegend"></div>
+            <p class="hint" id="photoCalHint">点日历上的任意一天，就切到那天的记录。</p>
+          </div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>这一天的照片</h2><span class="sub" id="photoCount">—</span></div>
+            <div class="photoGrid" id="photoGrid"></div>
+            <input type="file" id="photoFile" accept="image/*" multiple>
+            <div class="btnRow"><button class="btn pri" id="btnAddPhoto">添加照片</button></div>
+            <p class="hint">可以一次选多张，选完自动压缩保存，张数不限。照片存的是压缩后的图，换设备也能看到。</p>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>这天聊两句</h2><span class="sub" id="photoChatSub"></span></div>
+            <div class="photoChat" id="photoChat"></div>
+            <div class="chatInputRow">
+              <input id="photoChatInput" type="text" placeholder="看到照片想说点什么…">
+              <button class="btn sm pri" id="btnPhotoChatSend" type="button">发送</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>心情 · 评分 · 标签</h2></div>
+            <div class="moodPickRow" id="phMoodRow"></div>
+            <div class="chipRow" id="phRateRow"></div>
+            <div class="chipRow" id="phTagRow"></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>往日记录</h2><span class="sub" id="phPastCount"></span></div>
+            <div id="phPast"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-mine">
+      <div class="topbar"><h1>我的</h1></div>
+      <div class="cols">
+        <div>
+          <div class="card">
+            <div class="syncCard">
+              <span class="dot" id="syncDot"></span>
+              <span class="txt"><span class="t1" id="syncText">正在连接…</span><span class="t2" id="syncTime">—</span></span>
+            </div>
+            <div class="btnRow">
+              <button class="btn" id="btnResync">手动重新同步</button>
+              <button class="btn hide" id="btnFlushPending">立即补写</button>
+            </div>
+            <div class="kv" id="pendingRow" style="display:none"><span class="k">待写入</span><span class="v" id="pendingText">0 项</span></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>已完成归档</h2><span class="sub" id="mineArchCount">0</span></div>
+            <p style="font-size:12.5px;color:var(--ink3);margin:0 0 10px">完成的计划不会占着首页，都收在这里，按完成时间倒序。</p>
+            <div class="btnRow"><button class="btn" id="btnArchiveOpen2">打开归档列表</button></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>成员</h2></div>
+            <div class="fld"><label for="nameMe">我</label><input id="nameMe" type="text" placeholder="你的名字"></div>
+            <div class="fld"><label for="namePartner">对方</label><input id="namePartner" type="text" placeholder="对方的名字"></div>
+            <div class="btnRow"><button class="btn pri" id="btnSaveMembers">保存并同步到全部记录</button><button class="btn" id="btnRewho">重新选我是谁</button></div>
+            <p style="font-size:12.5px;color:var(--ink3);margin:10px 0 0">身份存在这台设备上，是标记不是账号；换设备后打开会先让你选一次「我是谁」，之后一直记住。</p>
+          </div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>房间</h2><span class="sub" id="roomCodeText">—</span></div>
+            <p style="font-size:12.5px;color:var(--ink3);margin:0 0 10px">只有拿到同一个房间码的人，才看得到你们的计划、照片和日记。换设备、或者要再邀请一次，就把下面的链接发给对方。<b>微信里会被切到小程序，让对方用手机浏览器打开。</b></p>
+            <div class="btnRow">
+              <button class="btn pri" id="btnRoomCopy2">复制邀请链接</button>
+              <button class="btn" id="btnRoomSwitch">换一个房间</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>数据备份</h2></div>
+            <div class="btnRow">
+              <button class="btn pri" id="btnExport">导出 JSON 备份</button>
+              <button class="btn" id="btnImport">导入恢复</button>
+            </div>
+            <input type="file" id="fileImport" accept=".json,application/json" class="hide">
+            <div class="btnRow">
+              <button class="btn danger" id="btnClearAll">清空全部数据</button>
+            </div>
+            <p style="font-size:12.5px;color:var(--ink3);margin:10px 0 0">计划、打卡、心情、照片、留言都实时存在云端，多设备自动同步。导出会把当前全部数据存成一个 JSON 文件，导入恢复不限条数，换设备或误删后都能找回。清空全部需要输入「清空」二次确认。</p>
+          </div>
+          <div class="card">
+            <div class="card-h"><span class="bar"></span><h2>添加到手机主屏幕</h2></div>
+            <ol class="steps">
+              <li id="homeStep1">用手机自带浏览器打开这个链接。微信里请先点右上角「在浏览器打开」。</li>
+              <li id="homeStep2">iPhone 点底部「分享」→「添加到主屏幕」；安卓点右上角菜单 →「添加到主屏幕」。</li>
+              <li id="homeStep3">桌面会出现一个图标，以后点它直接进，和 App 一样。</li>
+            </ol>
+            <div class="wxLink" id="homeLinkText">https://workbuddy.link/p/3M1oqPyAJKYDSeGpFdvw7k</div>
+            <div class="btnRow">
+              <button class="btn pri" id="btnHomeCopy" type="button">复制链接</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<nav class="tabbar" aria-label="主导航">
+  <button data-tab="plan" class="on"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l2 2 3-3"/><path d="M12 8h8"/><path d="M4 17l2 2 3-3"/><path d="M12 18h8"/></svg>计划</button>
+  <button data-tab="partner"><span style="position:relative;display:flex"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><path d="M16.5 6.2a3.2 3.2 0 0 1 0 6"/><path d="M18 19h3a5.2 5.2 0 0 0-4-5.1"/></svg><span class="badge hide" id="tbBadgePartner">0</span></span>伙伴</button>
+  <button data-tab="photo"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.4"/></svg>照片</button>
+  <button data-tab="mine"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>我的</button>
+</nav>
+
+<div class="mask" id="maskCompose"><div class="sheet">
+  <div class="grab"></div>
+  <div class="sheet-h"><h3 id="composeTitle">记些重要的事情吧</h3><button class="iconbtn" id="btnComposeClose" aria-label="关闭"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <textarea id="fTitle" rows="2" placeholder="随便写，比如「明天下午 练习单摆」"></textarea>
+  <div class="parsed off" id="parsedRow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    <span id="parsedText">没说时间就不设日期</span>
+  </div>
+  <div class="quadPick hide" id="quadPick"></div>
+  <div id="quantBox" class="hide" style="margin-top:10px">
+    <div style="display:flex;gap:8px">
+      <input id="fUnit" type="text" placeholder="单位，如 个 / 页 / 次">
+      <input id="fTotal" type="number" inputmode="numeric" placeholder="总量">
+    </div>
+    <input id="fDeadline" type="text" placeholder="截止日，如 2026-11-30（选填）" style="margin-top:8px">
+  </div>
+  <div id="planBox" class="hide" style="margin-top:9px">
+    <input id="fObstacle" type="text" placeholder="最容易拦住我的障碍（选填）">
+    <input id="fPlan" type="text" placeholder="如果它出现，我就……（选填）" style="margin-top:8px">
+  </div>
+  <div class="tools">
+    <button class="tool time" id="btnToolTime" aria-label="时间"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></button>
+    <button class="tool quad" id="btnToolQuad" aria-label="重要性"><span class="qmark" id="qMark">Ⅳ</span></button>
+    <button class="tool quant" id="btnToolQuant" aria-label="是否为打卡任务"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l2 2 3-3"/><path d="M12 8h8"/><path d="M4 17l2 2 3-3"/><path d="M12 18h8"/></svg></button>
+    <button class="tool plan" id="btnToolPlan" aria-label="障碍与对策"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3l9-16z"/><path d="M12 9v5"/><path d="M12 17h.01"/></svg></button>
+    <button class="tool more" id="btnToolMore" aria-label="更多"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></svg></button>
+    <button class="send" id="btnSend" aria-label="保存"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l16-8-6 16-3.5-6.5L4 12z"/></svg></button>
+  </div>
+  <input id="fDate" type="date" class="hide" style="margin-top:10px">
+</div></div>
+
+<div class="mask" id="maskDetail"><div class="sheet">
+  <div class="grab"></div>
+  <div class="sheet-h"><h3 id="detailTitle">计划</h3><button class="iconbtn" id="btnDetailClose" aria-label="关闭"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div id="detailBody"></div>
+</div></div>
+
+<div class="mask" id="maskCheckin"><div class="sheet">
+  <div class="grab"></div>
+  <div class="sheet-h"><h3 id="checkinTitle">打卡</h3><button class="iconbtn" id="btnCheckinClose" aria-label="关闭"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="fld"><label for="fAmount">这次完成多少</label><input id="fAmount" type="number" inputmode="decimal" placeholder="数量"></div>
+  <div class="fld"><label>记到哪一天</label><div class="datesRow" id="dateChips"></div></div>
+  <p style="font-size:12.5px;color:var(--ink3);margin:0 0 11px">补记会按真实日期参与统计，并带「补」标。</p>
+  <button class="btn pri" id="btnDoCheckin" style="width:100%">确认打卡</button>
+</div></div>
+
+<div class="mask" id="maskMood"><div class="sheet">
+  <div class="grab"></div>
+  <div class="sheet-h"><h3 id="moodPickTitle">记心情</h3><button class="iconbtn" id="btnMoodClose" aria-label="关闭"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="moodGrid" id="moodPickGrid"></div>
+  <div class="moodOther" id="moodPickOther"></div>
+  <div class="noteToggleRow">
+    <button class="linkBtn" id="btnMoodNoteToggle">＋ 想多说一句（选填）</button>
+    <button class="linkBtn danger hide" id="btnMoodClear">清掉这天</button>
+  </div>
+  <div class="noteWrap hide" id="moodNoteWrap">
+    <input id="moodNote" type="text" placeholder="比如：今天开会到晚上八点">
+    <div class="btnRow" style="margin-top:8px"><button class="btn pri" id="btnMoodNoteSave">保存备注并关闭</button></div>
+  </div>
+</div></div>
+
+<div class="mask" id="maskAsk"><div class="sheet" style="max-width:440px">
+  <div class="grab"></div>
+  <div class="sheet-h"><h3 id="askTitle">确认</h3></div>
+  <p id="askText" style="font-size:13.5px;color:var(--ink2);margin:0 0 11px"></p>
+  <input id="askInput" type="text" placeholder="">
+  <div class="btnRow"><button class="btn" id="btnAskCancel">取消</button><button class="btn danger" id="btnAskOk">确定</button></div>
+</div></div>
+
+<div class="mask" id="maskArchive"><div class="sheet" style="max-width:560px">
+  <div class="grab"></div>
+  <div class="sheet-h"><h3>已完成归档</h3><button class="iconbtn" id="btnArchiveClose" aria-label="关闭"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="archBar">
+    <input id="archQ" type="text" placeholder="搜关键词…">
+    <input id="archDate" type="date">
+    <button class="btn" id="btnArchClear">清除</button>
+  </div>
+  <p class="hint" id="archHint">—</p>
+  <div class="archList" id="archList"></div>
+</div></div>
+
+<div class="mask" id="maskRoom"><div class="sheet" style="max-width:440px">
+  <div class="grab"></div>
+  <div class="sheet-h"><h3>先绑定你们两个人</h3></div>
+  <p style="font-size:13px;color:var(--ink2);margin:0 0 12px;line-height:1.55">
+    数据按「房间」隔开。拿到同一个房间码的人，才能看到这份计划、照片和日记；别的房间看不到你们的内容，也不会下到别人的手机上。
+  </p>
+  <div class="btnRow"><button class="btn pri" id="btnRoomCreate" type="button">创建我们的空间</button></div>
+  <div class="whoCustom">
+    <button class="whoToggle" id="btnRoomToggle" type="button">我收到房间码了</button>
+    <div class="whoForm hide" id="roomForm">
+      <div class="fld"><label for="roomCode">房间码</label><input id="roomCode" type="text" placeholder="8 位字母数字" autocomplete="off" spellcheck="false"></div>
+      <div class="btnRow"><button class="btn pri" id="btnRoomJoin" type="button">进入这个房间</button></div>
+    </div>
+  </div>
+  <div id="roomInvite" class="hide" style="margin-top:14px">
+    <p style="font-size:13px;color:var(--ink2);margin:0 0 8px;line-height:1.55">
+      把这串码或链接发给对方，TA 就能进到同一间。<b>微信里会被切到小程序，让 TA 用手机浏览器打开。</b>
+    </p>
+    <div class="wxLink" id="roomInviteLink"></div>
+    <div class="btnRow">
+      <button class="btn" id="btnRoomCopy" type="button" style="flex:1">复制邀请链接</button>
+      <button class="btn pri" id="btnRoomOk" type="button" style="flex:1">好了，继续</button>
+    </div>
+  </div>
+</div></div>
+
+<div class="mask" id="maskWho"><div class="sheet" style="max-width:440px">
+  <div class="grab"></div>
+  <div class="sheet-h"><h3>你是哪一位？</h3></div>
+  <p style="font-size:13px;color:var(--ink2);margin:0 0 12px">身份只存在这台设备上，选一次就行。选错也没关系，「我的 → 成员」里随时能改。</p>
+  <div class="whoList" id="whoList"></div>
+  <div class="whoCustom">
+    <button class="whoToggle" id="btnWhoToggle" type="button">都不是，我自己填</button>
+    <div class="whoForm hide" id="whoForm">
+      <div class="fld"><label for="whoMe">我的名字</label><input id="whoMe" type="text" placeholder="比如：船长"></div>
+      <div class="fld"><label for="whoPa">对方的名字</label><input id="whoPa" type="text" placeholder="比如：伙伴"></div>
+      <div class="btnRow"><button class="btn pri" id="btnWhoCustom">就这两个</button></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="mask wx" id="maskWx"><div class="sheet">
+  <div class="sheet-h"><h3>请在浏览器里打开</h3></div>
+  <p style="font-size:13px;color:var(--ink2);margin:0;line-height:1.55">微信会自动把这个页面切到小程序。要保留两人的云端同步，请用手机浏览器打开它。若页面一闪就进小程序，请在聊天里长按链接复制，到 Safari 或 Chrome 粘贴。</p>
+  <ol class="steps">
+    <li>点微信右上角 <b>···</b>，选「在浏览器打开」</li>
+    <li>在浏览器里「添加到主屏幕」，以后点桌面图标直达</li>
+    <li>登录一次就够，之后会长期保持</li>
+  </ol>
+  <div class="wxLink" id="wxLinkText">https://workbuddy.link/p/3M1oqPyAJKYDSeGpFdvw7k</div>
+  <div class="btnRow">
+    <button class="btn pri" id="btnWxCopy" type="button" style="flex:1">复制链接</button>
+    <button class="btn" id="btnWxStay" type="button">就在这里用</button>
+  </div>
+</div></div>
+
+<div class="mask wx" id="maskA2hs"><div class="sheet">
+  <div class="sheet-h"><h3>加到主屏幕，下次一点就开</h3></div>
+  <p style="font-size:13px;color:var(--ink2);margin:0;line-height:1.55">加到主屏幕后不经过微信，登录一次就能长期保持，两人也继续云端同步。</p>
+  <ol class="steps">
+    <li id="a2hsStep1">用当前这个浏览器打开即可。</li>
+    <li id="a2hsStep2">按系统菜单把本页加到主屏幕。</li>
+    <li id="a2hsStep3">以后点桌面图标直达。</li>
+  </ol>
+  <div class="btnRow">
+    <button class="btn pri" id="btnA2hsOk" type="button" style="flex:1">知道了</button>
+    <button class="btn" id="btnA2hsLater" type="button">稍后再说</button>
+  </div>
+</div></div>
+
+<div id="toast"></div>
+<div id="fx"></div>
